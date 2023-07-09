@@ -1,7 +1,7 @@
 # Tiny Dinos
 
-Tiny Dinos is a project that is a thesaurus app using VertexAI 
-https://cloud.google.com/vertex-ai
+Tiny Dinos is a project that is a thesaurus app using [VertexAI](https://cloud.google.com/vertex-ai)
+* More at: https://lablab.ai/event/google-vertex-ai-hackathon/tiny-dinos/tiny-dinos
 
 ![](app_screenshot.png)
 
