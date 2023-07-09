@@ -5,7 +5,9 @@ from langchain.llms import VertexAI
 from langchain import PromptTemplate, LLMChain
 from google.auth import credentials
 from google.oauth2 import service_account
-from vertexai.preview.language_models import ChatModel, InputOutputTextPair
+from vertexai.preview.language_models import (ChatModel, InputOutputTextPair,
+                                              TextEmbeddingModel,
+                                              TextGenerationModel)
 import vertexai
 import json  # add this line
 import toml
@@ -71,11 +73,26 @@ st.subheader("LLM Thesaurus")
 st.text_input("Lookup", key="word", value="dinosaur")
 
 # You can access the value at any point with:
-word = st.session_state.word
+unlimited_word = st.session_state.word
 
-from vertexai.preview.language_models import (ChatModel, InputOutputTextPair,
-                                              TextEmbeddingModel,
-                                              TextGenerationModel)
+# Let's guard some simple cases
+
+# guard against empty input
+if not unlimited_word:
+  unlimited_word = "dinosaur"
+
+# guard against multi-word input (with some open-mindedness as we allow 2 word combos)
+wordcount = len(unlimited_word.split())
+# allow 1 word
+word = unlimited_word.split()[0]
+# allow 2 words because: le monde, the car, etc.
+if wordcount > 1:
+    word += f" {unlimited_word.split()[1]}"
+# warn that the word has been truncated
+if wordcount > 2:
+    # warn that there is word limiting
+    st.write(f"Your word has been truncated to {word}.  Try using only 1 word.")
+
 
 # Use chat-bison and remind it that it's a poet because we care about word similarities
 chat_model = ChatModel.from_pretrained("chat-bison@001")
