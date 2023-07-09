@@ -14,6 +14,7 @@ import os
 isLocal = os.environ.get('islocal', False)
 ## You can uncomment the following to run locally
 #isLocal = True
+isLocal = False
 
 # Setup GCP vars
 project_var = ""
