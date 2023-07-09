@@ -30,7 +30,7 @@ if isLocal:
 else:
     project_var = st.secrets["project"]
     bucket_var = st.secrets["staging_bucket"]
-    service_account_info = secret_data.get('credentials')
+    service_account_info = st.secrets['credentials']
 
 my_credentials = service_account.Credentials.from_service_account_info(
     service_account_info
