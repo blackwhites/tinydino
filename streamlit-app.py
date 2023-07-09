@@ -29,19 +29,7 @@ if isLocal:
 else:
     project_var = st.secrets["project"]
     bucket_var = st.secrets["staging_bucket"]
-    service_account_info = {
-        type: st.secrets["credentials"]["type"],
-        project_id: st.secrets["credentials"]["project_id"],
-        private_key_id: st.secrets["credentials"]["private_key_id"],
-        private_key: st.secrets["credentials"]["private_key"],
-        client_email: st.secrets["credentials"]["client_email"],
-        client_id: st.secrets["credentials"]["client_id"],
-        auth_uri: st.secrets["credentials"]["auth_uri"],
-        token_uri: st.secrets["credentials"]["token_uri"],
-        auth_provider_x509_cert_url: st.secrets["credentials"]["auth_provider_x509_cert_url"],
-        client_x509_cert_url: st.secrets["credentials"]["client_x509_cert_url"],
-        universe_domain: st.secrets["credentials"]["universe_domain"]
-    }
+    service_account_info = secret_data.get('credentials')
 
 my_credentials = service_account.Credentials.from_service_account_info(
     service_account_info
