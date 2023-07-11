@@ -68,7 +68,6 @@ add_bg_from_local('A_robot_dinosaur_opacity.jpeg')
 
 # Initial page
 st.title('Tiny Dinos : LLM Thesaurus')
-st.write("VertexAI hackathon : Team [link](https://lablab.ai/event/google-vertex-ai-hackathon/tiny-dinos)")
 st.subheader("LLM Thesaurus")
 st.text_input("Lookup", key="word", value="dinosaur")
 
